@@ -1,61 +1,84 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <title>Bit Lounge 건강음료</title>
-  <meta http-equiv="Content-Type" content= "text/html; charset=UTF-8">
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-  <script src='main.js'></script>
-</head>
-<body>
-  <h1>건강 음료</h1>
-  
-  <h2>Green Tea Cooler</h2>
-  <p><img src="/ex01/images/green.jpg"></p>
-  <p>
-    Chock full of vitamins and minerals, 
-    this elixir combines the healthful benefits of green tea with a twist of 
-    chamomile blossoms and ginger root.
-  </p>
 
-  <h2>Raspberry Ice Concentration</h2>
-  <p><img src="/ex01/images/lightblue.jpg"></p>
-  <p>
-    Combining raspberry juice with lemon grass, 
-    citrus peel and rosehips, 
-    this icy drink will make your mind feel clear and crisp.
-  </p>
+    <head>
+        <title>Bit Lounge 건강음료</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
 
-  <h2>Blueberry Bliss Elixir</h2>
-  <p><img src="/ex01/images/blue.jpg"></p>
-  <p>
-    Blueberries and cherry essence mixed into a base of elderflower herb tea will put you in a relaxed state of bliss in no time.
-  </p>
+    <body>
+        <header>
+            <!-- 사이트 전체 혹은 기사의 헤더 정보 -->
+            <h1>건강 음료</h1>
+        </header>
 
-  <h2>Cranberry Antioxidant Blast</h2>
-  <p><img src="/ex01/images/red.jpg"></p>
-  <p>
-    Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
-  </p>
-</body>
-</html>>
+        <nav>
+            <!-- nav: 메뉴 등 사이트 네비게이션 관련 시맨틱 태그-->
+            <!-- 리스트를 활용한 메뉴 -->
+            <ul>
+                <!-- ul: 순서 없는 리스트 -->
+                <!-- ol: 순서 있는 리스트 -->
+                <li>Green</li>
+                <li>Blue</li>
+                <li>Purple</li>
+                <li>Red</li>
+            </ul>
+        </nav>
 
-Page 내용(BODY)
----------------
+        <article>
+            <!-- article: 실제 컨텐츠를 표시하는 시맨틱 태그 -->
 
-      
-작은 제목 2: 
-음료 이미지 : 
-문단 :
-  
-작은 제목 3: 
-음료 이미지 : "
-문단 : 
-  
-작은 제목 4: Cranberry Antioxidant Blast
-음료 이미지 : red.jpg"
-문단 : 
-  Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+            <!-- 시맨틱 태그는 div의 일종이지만, 좀더 구체적인 의미를 가지는 공간 점유 태그 -->
+            <div>
+                <img src="./images/Penguins.jpg" alt="Seller"/>
+            </div>
 
-문단 :
-  [링크:메인 페이지]메인으로 돌아가기[/링크]
+            <section>
+                <!-- section: 내부 섹션을 구분하는 시맨틱 태그 -->
+                <h2>Green Tea Cooler</h2>
+                <!-- 상대 경로를 이용 . : 현재 위치 .. : 부모 디렉터리 -->
+                <!-- 상대 경로를 활용한 이미지 삽입-->
+                <img src="./images/green.jpg" alt="Green Tea Cooler"/>
+                <p>
+                    Chock full of vitamins and minerals, this elixir combines the healthful benefits
+                    of green tea with a twist of chamomile blossoms and ginger root.
+                </p>
+            </section>
+
+            <section>
+                <h2>Raspberry Ice Concentration</h2>
+                <img src="images/lightblue.jpg" alt="Raspberry Ice Concentration"/>
+                <p>
+                    Combining raspberry juice with lemon grass, citrus peel and rosehips, this icy
+                    drink will make your mind feel clear and crisp.
+                </p>
+            </section>
+
+            <section>
+                <h2>Blueberry Bliss Elixir</h2>
+                <img src="images/blue.jpg" alt="Blueberry Bliss Elixir"/>
+                <p>
+                    Blueberries and cherry essence mixed into a base of elderflower herb tea will
+                    put you in a relaxed state of bliss in no time.
+                </p>
+            </section>
+
+            <section>
+                <h2>Cranberry Antioxidant Blast</h2>
+                <img src="images/red.jpg" alt="Cranberry Antioxidant Blast"/>
+                <p>
+                    Wake up to the flavors of cranberry and hibiscus in this vitamin C rich elixir.
+                </p>
+            </section>
+        </article>
+
+        <nav>
+            <p>
+                <a href="index.html">메인으로 돌아가기</a>
+            </p>
+        </nav>
+
+        <footer>&copy; Bit Lounge, 2021</footer>
+    </body>
+
+</html>
