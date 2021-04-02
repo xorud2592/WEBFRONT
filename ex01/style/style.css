@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import "main.css";
+
+h1{
+    background-color: black;
+    color: #ffff00;
+}
+
+nav, section{
+    margin: 10px 20px;
+}
+
+/* 
+#green{
+    background-color: green;
+}
+
+#blue{
+    background-color: blue;
+} */
+.beverage {
+    padding: 10px;
+}
+
+.beverage.green {
+    background-color:lightgreen;
+}
+
+.beverage.blue {
+    background-color: cyan;
+}
+
+.beverage.purple {
+    background-color: purple;
+}
+
+.beverage.red {
+    background-color: red;
+}
+
+a:hover{
+    color: black;
+}
+
+a:active{
+    color: red;
+}
+
+a:link{
+    color: cyan;
+}
+
+a:visited{
+    color: blue;
+}

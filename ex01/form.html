@@ -3,6 +3,32 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
         <title>멤버십 가입</title>
+        
+        <style>
+            *[type]{
+                background-color: beige;
+            }
+
+            input[type=text]{
+                background-color: lightgreen;
+            }
+
+            input[type=password]{
+                background-color: lightskyblue;
+            }
+
+            input:enabled{
+                background-color: white;
+            }
+
+            input:disabled{
+                background-color: lightgray;
+            }
+
+            input:focus{
+                background-color: orange;
+            }
+        </style>
     </head>
     <body>
         <h1>멤버십가입</h1>
@@ -11,7 +37,7 @@
             <fieldset>
                 <legend>회원가입</legend>
                 <label for="userid">아이디</label>
-                <input name="userid" id="userid"/>
+                <input type="text" ame="userid" id="userid"/>
                 <br/>
                 <label for="password">비밀번호</label>
                 <input type="password" name="password" id="password"/><br/>
