@@ -5,47 +5,59 @@
         <title>테이블</title>
 
         <style type="text/css" media="screen">
-            .tbl-ex {
-				
-				margin: 10px auto 0px auto;
-                border: 1px solid #333;
-                border-collapse: collapse;
-				border-left: 0px;
-				border-right: 0px;					
-            }
-            td,
-            th {
+            * {
+                padding: 0;
                 margin: 0;
-                padding: 8px;
+            }
+            body {
                 font-family: 맑은 고딕, 돋움;
                 font-size: 0.75em;
                 color: #333;
+            }
+
+            .tbl-ex {
+                margin: 10px auto;
+                border-collapse: collapse;
+            }
+
+            .tbl-ex,
+            td,
+            th {
                 border: 1px solid #333;
-				border-left: 0px;
-				border-right: 0px;	
+                border-left: 0;
+                border-right: 0;
+            }
+
+
+
+            td,
+            th {
+                padding: 8px;
             }
 
             th {
                 background-color: #999;
-				font-size: 1.1em;
-				color: #fff;
-				
-				border-top: 2px solid #333;
-				border-bottom: 2px solid #333;
-			}
+                font-size: 1.1em;
+                color: #fff;
 
-			td{
-				border-style: dotted;
-				
-			}
+                border-top: 2px solid black;
+                border-bottom: 2px solid black;
+            }
 
-			tr:hover{
-				background-color: #fc6;
-			}
+            td {
+                border-style: dotted;
 
-			.even{
-				background-color: #E8ECF6;
-			}
+            }
+
+            tr:nth-child(2n+1) {
+                background-color: #E8ECF6;
+            }
+
+            tr:hover {
+                background-color: #fc6;
+                cursor: pointer;
+            }
+
         </style>
     </head>
     <body>
