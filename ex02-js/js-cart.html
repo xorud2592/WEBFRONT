@@ -22,10 +22,66 @@
             </ul>
         </div>
         <div id="cart-input">
-            <input id="item"><button id="btn-add">추가</button>
+            <input id="item">
+            <button id="btn-add">추가</button>
         </div>
         <div id="footer">
             &copy;Bit Academy
         </div>
     </body>
+
+    <script>
+        function addItem(event) {
+            var itemInput = document.getElementById("item");
+            var item = itemInput
+                .value
+                .trim();
+            console.log("추가 아이템", item);
+
+            if (item.length > 0) {
+                var container = document.getElementById("list");
+
+                var itemNode = document.createElement("li");
+                itemNode.innerText = item;
+
+                var toolbar = document.createElement("div");
+                toolbar.style.display = "inline";
+                var delBtn = document.createElement("button");
+                delBtn.innerText = "삭제";
+                delBtn.style.float = "right";
+
+                toolbar.appendChild(delBtn);
+                itemNode.appendChild(toolbar);
+
+                delBtn.addEventListener("click", function (event) {
+                    var removeItem = event.target.parentNode.parentNode;
+
+                    var parent = removeItem.parentNode;
+
+                    parent.removeChild(removeItem);
+                });
+
+                container.appendChild(itemNode);
+                itemInput.value = "";
+                itemInput.focus();
+
+            }
+        }
+
+        window.addEventListener("load", function (event) {
+            var cartItem = document.querySelectorAll("#list > li");
+            for (var i = 0; i < cartItem.length; i++) {
+                cartItem[i]
+                    .parentNode
+                    .removeChild(cartItem[i]);
+            }
+            document
+                .getElementById("btn-add")
+                .addEventListener("click", addItem);
+        });
+
+        if(container.hasChildNodes() && container.children.length > 0){
+            document.insertBefore(itemNode, container.children[0]);
+        }
+    </script>
 </html>
