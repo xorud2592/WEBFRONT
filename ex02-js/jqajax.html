@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Example</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <style>
+        .poster {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnCallSnippet">HTML 조각 불러오기</button>
+    <button id="btnCallMovies">영화 목록 불러오기</button><!-- API Call -->
+
+    <!-- 결과 출력 영역 -->
+    <div id="info"><!-- btnCallSnippet 버튼을 누르면 페이지 조각을 받아서 반영 -->
+
+    </div>
+
+    <!-- btnCallMovies 버튼을 누르면 API 서버에 데이터 요청, 결과를 반영-->
+    <table id="list" border="1" width="640">
+
+    </table>
+
+    <script>
+        //  초기화
+        $(document).ready(function(event) {
+            //  영화 목록 버튼
+            $("#btnCallMovies").on("click", function(event) {
+                //  localhost:3000/movies 에 json 결과 요청
+                $.ajax({
+                    url: "http://localhost:3000/movies",
+                    type: "GET",
+                    dataType: "json",
+                    success: function(response) {
+                        //  성공 콜백
+                        console.log(response.movies);
+                        //  UI에 반영
+                        //  tr 태그 생성
+                        var movies = response.movies;   //  response json의 movies속성 (배열)
+
+                        movies.forEach( movie => {
+                            // console.log("movie:", movie);
+                            // table#list 에 tr 로 추가
+                            var title = movie.title;
+                            var director = movie.director;
+                            var movieId = movie.id;
+
+                            var movieImage = "http://localhost:3000/images/" + movie.image;
+
+                            //  새 노드 생성
+                            var tr = $("<tr>");
+                            var htmlString = `
+                                <td><image class="poster" src="${movieImage}"/></td>
+                                <td>${title}</td>
+                                <td>${director}</td>`;
+                            //  tr 내부에 html을 채운다
+                            tr.html(htmlString);
+
+                            //  table#list에 추가
+                            $("#list").append(tr);
+                        });
+                    },
+                    error: function(response, status, error) {
+                        console.error(response);
+                        console.error(status);
+                        console.error(error);
+                    }
+                })
+            });
+            //  btnCallSnippet 버튼에 클릭이벤트 부착
+            $("#btnCallSnippet").on("click", function(event) {
+                console.log("btnCallSnippet click");
+
+                //  jQuery를 이용한 Ajax(비동기 호출)
+                $.ajax({
+                    url: "snippet.html",    //  요청을 받을 서버 페이지 주소
+                    // url: "notfound.html",       //  없는 페이지(error 콜백 테스트용)
+                    type: "GET",
+                    // data:                   //  서버에 요청할 data
+                    dataType: "text",           //  서버로부터 전달 받을 데이터의 타입
+                    success: function(response) {   
+                        //  요청이 성공(200)했을 때 실행될 콜백함수
+                        //  1번째 인자, => 서버로부터 전달 받은 데이터
+                        console.log(response);
+                        //  UI에 반영
+                        $("#info").html(response);
+                    }, 
+                    error: function(response, // 응답 정보
+                        status,     //  응답 코드
+                        error) {    //  에러 정보 객체
+                        //  요청이 실패했을 때 실행될 콜백함수
+                        console.error("response:", response);
+                        console.error("status:", status);
+                        console.error("error:", error);
+                    }
+                }); 
+            });
+        });
+
+    </script>
+</body>
+</html>

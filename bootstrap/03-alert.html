@@ -9,10 +9,27 @@
     <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Alert Component</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <!-- 사용자에게 메시지를 피드백 
+      주클래스 alert 보조클래스 alert-용도
+      용도는 button 용도와 동일
+    -->
+    <div class="container">
+      <!-- fade show 클래스를 추가하면 애니메이션 효과를 추가 -->
+      <div class="alert alert-info show fade" role="alert">
+        중요한 메시지가 있습니다.
+        자세한 내용을 보시려면
+        <!-- alert 내부에 링클 삽입시
+          .alert-link 클래스를 추가해 주면 자연스러워진다 -->
+        <a href="#" class="alert-link">여기</a>를 클릭하세요
+        <!-- 닫기 버튼 추가 -->
+        <button class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
