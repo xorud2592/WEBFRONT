@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Routing</title>
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Vue Router -->
+    <script src ="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <!-- Vue 렌더링 영역 -->
+    <div id="app">
+        <h1>Routing</h1>
+        <!-- 메뉴 영역 -->
+        <!-- router-link: 클라이언트 라우팅 수행 -->
+        <ul>
+            <li>
+                <router-link to="/">Main Page</router-link>
+            </li>
+            <li>
+                <router-link to="/sub">Sub Page</router-link>
+            </li>
+            <li>
+                <router-link v-bind:to="'/param/' + param1">파라미터 전송</router-link>
+            </li>
+            <!-- 중첩 라우팅: 부모 자식을 동시 렌더링 -->
+            <li>
+                <router-link to="/user">사용자</router-link>
+                <ul>
+                    <li>
+                        <router-link to="/user/profile">사용자 프로필</router-link>
+                    </li>
+                </ul>
+            </li>
+            <!-- 이름 기반 라우팅 -->
+            <li>
+                <router-link to="/named">이름 기반 라우팅</router-link>
+            </li>
+        </ul>
+        <h1>Content Area</h1>
+        <router-view name="header"></router-view><!-- 명명된 router-view -->
+        <!-- 실제 컨텐츠가 표시될 영역 -->
+        <router-view></router-view><!-- 이름을 명시하지 않은 router-view -> default -->
+        <router-view name="footer"></router-view><!-- 명명된 router-view -->
+    </div>
+    
+    <script>
+        var main = {
+            template: "<div><h2>Main</h2></div>",
+            created: function() {
+                console.log("Main Component: created");
+            },
+            mounted: function() {
+                console.log("Main Component: mounted");
+            },
+            destroyed: function() {
+                console.log("Main Component: destroyed");
+            }
+        };
+
+        var sub = {
+            template: "<div><h2>Sub</h2></div>",
+            created: function() {
+                console.log("Sub Component: created");
+            },
+            mounted: function() {
+                console.log("Sub Component: mounted");
+            },
+            destroyed: function() {
+                console.log("Sub Component: destroyed");
+            }
+        };
+        var paramComp = {
+            template: `<div>
+                <h2>파라미터 전송</h2>
+                <p>{{ paramVal }}</p>
+            </div>`,
+            computed: {
+                paramVal: function() {
+                    return this.$route.params.param1;
+                }
+            },
+            created: function() {
+                console.log("Param Component: created");
+            },
+            mounted: function() {
+                console.log("Param Component: mounted");
+            },
+            destroyed: function() {
+                console.log("Param Component: destroyed");
+            }
+        };
+
+        var userCmp = {
+            template: `<div>
+                <h2>User</h2>
+                <router-view></router-view>
+            </div>`
+        }
+
+        //  named routing
+        var header = {
+            template: "<div><h3>Named Header</h3></div>"
+        }
+
+        var content = {
+            template: "<div><p>Named Contents</p></div>"
+        }
+
+        var footer = {
+            template: "<div><p>Named Footer</p></div>"
+        }
+        //  클라이언트 라우팅 구현을 위한 라우터 선언
+        var router = new VueRouter({
+            //  링크 정보
+            routes: [
+                { path: "/", component: main }, //  / -> main 컴포넌트 표시
+                { path: "/sub", component: sub },
+                //  동적 파라미터 전달
+                { path: '/param/:param1', component: paramComp },
+                //  중첩 라우팅 등록
+                { path: '/user', component: userCmp,    //  url : /user
+                    children: [{
+                            path: "profile",    //  url : /user/profile
+                            component: {
+                                template: "<div><h3>User Profile</h3></div>"
+                            }
+                        }
+                    ]},
+                //  이름 기반 라우팅
+                { path: '/named', components: {
+                    header: header, //  name=header인 router-view에 header 컴포넌트 출력
+                    default: content,   //  name이 없는 router-view에 content 컴포넌트 출력
+                    footer: footer  //  name=footer인 router-view에 footer 컴포넌트 출력
+                }}
+            ]
+        });
+
+        //  Vue 객체 생성
+        new Vue({
+            el: "#app",
+            router: router, //  라우터 등록
+            data: {
+                param1: "파라미터 값"
+            }
+        })
+    </script>
+</body>
+</html>

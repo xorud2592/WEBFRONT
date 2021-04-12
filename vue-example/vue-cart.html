@@ -47,10 +47,15 @@
     <script>
         //  전역 컴포넌트
         Vue.component("cart-header", {
-            template: `<h1>{{ title }}</h1>`,
+            template: `<h1>{{ upperTitle }}</h1>`,
             data: function() {
                 return {
                     title: "Vue Cart"
+                }
+            },
+            computed: { //  모델이 변경되면 미리 연산을 수행 -> 캐시해 둔다(미리 저장해 둔다)
+                upperTitle: function() {
+                    return this.title.toUpperCase();
                 }
             }
         });
@@ -104,11 +109,24 @@
         var cartInput = {
             template: `
             <div>
+                <p>{{ message }}</p>
                 <input v-model="newItem"><button v-on:click="addItem">추가</button>
             </div>`,
             data: function() {
                 return {
+                    message: "상품을 입력하세요",        
                     newItem: ""    //  새로 살 물건 이름
+                }
+            },
+            watch: {
+                //  모델의 변경을 적극적으로 감시
+                newItem: function(item) {
+                    console.log("item:", item);
+                    if (item.trim().length > 0) {
+                        this.message = "상품을 등록하실 수 있습니다";
+                    } else {
+                        this.message = "상품을 입력하세요";
+                    }
                 }
             },
             methods: {
